@@ -1,0 +1,59 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        class EnterName extends React.Component {
+            constructor(){
+                super()
+                this.state = {
+                    name: '',
+                    result: ''
+                }
+            }
+
+            handleNameChange = (e) => { 
+                const name = e.target.value 
+                this.setState({ name })
+            }
+
+            handleSubmit = (e) => {
+                e.preventDefault()
+                this.setState({
+                    result: `your name ${this.state.name} has ${this.state.name.length} letters`
+                })
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h1>Enter</h1>
+                        <form onSubmit={this.handleSubmit}>
+                            <label>name</label>
+                            <input type="text" value={this.state.name} onChange={this.handleNameChange} placeholder="enter your name"/> <br />
+                            <input type="submit" />
+                        </form>
+
+                        <b>{this.state.result}</b>
+                    </div>
+                )
+                
+            }
+        }
+
+        ReactDOM.render(<EnterName />, rootHandle)
+    </script>
+</body>
+
+</html>

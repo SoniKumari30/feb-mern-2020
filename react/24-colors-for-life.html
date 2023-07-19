@@ -1,0 +1,39 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+    const colors=['red', 'blue', 'green', 'yellow','red']
+
+    function PrintColors(props){
+        return(
+            <div>
+            <h1>colors for soni life</h1>
+            <ul>
+            {
+                props.data.map(function(ele,i){
+                   return <li key={i} style={{color:ele}}>{ele.toUpperCase()}</li>
+                })
+                    
+                
+            }
+            </ul>
+            </div>
+        )
+
+    }
+   ReactDOM.render(<PrintColors data={colors} />,document.getElementById('root'))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+    const rootHandle = document.getElementById('root')
+    //child class-Greet && base class Component
+    //sub Class-Greet && parent class Component
+    class Greet extends React.Component{
+
+        render(){ //UI-presentation
+
+        return(
+            <div>
+            {/*this is a comment inside jsx*/}
+              <h1>hi there, {this.props.name}</h1>
+
+            </div>
+        )
+
+        }
+    }
+    ReactDOM.render(<Greet name="soni"/>,rootHandle)
+   
+  </script>
+</body>
+
+</html>

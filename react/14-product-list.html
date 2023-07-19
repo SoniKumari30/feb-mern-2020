@@ -1,0 +1,45 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+    function NavBar(props){
+        return (
+            <div>
+            <h1> E - Com Store </h1>
+            <a href="#">home</a> <a href="#">product</a>
+        </div>
+        )
+    }
+    function Product(props){
+        return(
+            <div>
+            <h3>name - {props.name}</h3>
+            <p>price - INR{props.price}</p>
+            <p>rating - {props.rating}</p>
+            <hr/>
+            </div>
+        )
+    }
+    const ele=(
+        <div>
+            <NavBar/>
+        <Product name="marker" price="10"rating="4.5"/>
+        <Product name="scale" price="20"rating="4.8"/>
+        </div>
+    )
+   ReactDOM.render(ele, document.getElementById('root'))
+  </script>
+</body>
+
+</html>

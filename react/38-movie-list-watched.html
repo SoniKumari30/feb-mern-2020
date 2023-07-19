@@ -1,0 +1,73 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        class MovieList extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    movies: [
+                        { id: 1, name: 'The Godfather', watched: false },
+                        { id: 2, name: 'Kill Bill', watched: true },
+                        { id: 3, name: 'Bourne Ultimatum', watched: true }
+                    ]
+                }
+            }         
+
+            handleMovieListWatched = (id) => {
+                this.setState((prevState) => {
+                    return {
+                        movies: prevState.movies.map((movie) => {
+                            if (movie.id == id) {
+                                // const newMovie = Object.assign({}, movie) 
+                                // return Object.assign(newMovie, {watched: !movie.watched})
+                                return Object.assign({}, movie, { watched: !movie.watched })
+                            } else {
+                                return Object.assign({}, movie)
+                            }
+                        })
+                    }
+                })
+            } 
+
+            render() {
+                return (
+                    <div>
+                        <h1>Movie List - {this.state.movies.length}</h1>
+                        <ul>
+                            {this.state.movies.map((movie) => {
+                                return (
+                                    <li>
+                                         <input type="checkbox" checked={movie.watched} onChange={() => {
+                                            this.handleMovieListWatched(movie.id)
+                                        }} />
+                                        {movie.name}
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MovieList />, rootHandle)
+
+
+
+    </script>
+</body>
+
+</html>

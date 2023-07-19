@@ -1,0 +1,80 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+        const tasks = [
+            { id: 1, title: 'server deploy', completed: false },
+            { id: 2, title: 'db backup', completed: true },
+            { id: 3, title: 'gather client requirements', completed: true }
+        ]
+
+        function TasksTable(props) {
+            return (
+                
+                <div>
+
+                    <table border="1">
+                        <thead>
+                            <tr>
+                              <th>id</th>  
+                              <th>title</th> 
+                              <th>status</th> 
+                               </tr> 
+                            </thead>
+                        <tbody>{
+                           props.data.map(function(ele){
+                           return  (
+                               <tr key={ele.id}>
+
+                                 <td>{ele.id}</td>
+                                 <td>{ele.title}</td>
+                                 <td>{ele.completed?'completed':'not completed'}</td>
+
+
+                                </tr>
+                           )   
+
+                               
+                           }) 
+                        }
+                            </tbody>
+                    </table>
+                </div> 
+            )
+        }
+         const completedTask = tasks.filter(function(task){
+             return task.completed
+         })
+         const notCompletedTask = tasks.filter(function(task){
+             return !task.completed
+         })
+
+
+        const ele = (
+            <div>
+                <h1>All Tasks</h1> 
+                <TasksTable data={tasks}/>
+                <h1>completed Tasks</h1> 
+                <TasksTable data={completedTask}/>      
+                <h1>not Completed Tasks</h1> 
+                <TasksTable data={notCompletedTask}/>
+                
+            </div> 
+        )
+
+        ReactDOM.render(ele, document.getElementById('root'))
+    </script>
+</body>
+
+</html>

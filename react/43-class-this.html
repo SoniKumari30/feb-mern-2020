@@ -1,0 +1,71 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+    const rootHandle = document.getElementById('root')
+    class Counter extends React.Component {
+                constructor() {
+                    console.log('constructor')
+                    super()
+                    this.state = {
+                        count: 0
+                    }
+                    // 1. bind in the constructor
+
+                    this.handleDown = this.handleDown.bind(this)
+                }
+
+                componentDidMount() {
+                    console.log('component did mount', this)
+                }
+
+                
+                handleDown() {
+                    console.log('handle down', this) // current object
+                    this.setState((prevState) => {
+                        return { 
+                            count: prevState.count - 1
+                        }
+                    })
+                }
+                
+
+                // 2 - make event handler as arrow function
+                handleClick = () => {
+                    console.log('handle click', this) //current   
+                    this.setState((prevState) => {
+                        return {
+                            count: prevState.count + 1
+                        }
+                    })
+                }
+
+                render() {
+                    console.log('render', this)
+                    return (
+                        <div>
+                            <h1> {this.state.count}</h1>
+                            <button onClick={this.handleDown}> down </button> 
+                            <button onClick={this.handleClick}> up </button>
+                        </div>
+                    )
+                }
+            }
+
+            ReactDOM.render(<Counter />, rootHandle)
+    
+    
+ </script>
+</body>
+
+</html>

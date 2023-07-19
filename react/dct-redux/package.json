@@ -1,0 +1,14 @@
+{
+  "name": "dct-redux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dct-redux.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dct",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.0.5"
+  }
+}

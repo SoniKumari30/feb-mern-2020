@@ -1,0 +1,117 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+    const rootHandle = document.getElementById('root')
+    
+
+class MovieList extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            movies: [
+                { id: 1, name: 'The Godfather', watched: false },
+                { id: 2, name: 'Kill Bill', watched: true },
+                { id: 3, name: 'Bourne Ultimatum', watched: true }
+            ],
+            id: '',
+            name: '',
+            watched: false 
+        }
+    }
+
+handleChange = (e) => {
+    if(e.target.type == 'checkbox'){
+    this.setState({
+        [e.target.name]: e.target.checked
+    })
+   }else{
+       this.setState({
+        [e.target.name]: e.target.value 
+       })
+
+}
+}
+handleSubmit = (e) => {
+        e.preventDefault() 
+        const formData = {
+            id: parseInt(this.state.id), 
+            name: this.state.name, 
+            watched: this.state.watched 
+        }
+        this.setState((prevState) => {
+            return {
+                movies: prevState.movies.concat(formData),
+                id: '',
+                name: '',
+                watched: false 
+            }
+        })
+    }
+
+    render() {
+        console.log(this.state)
+        return (
+            <div>
+                <h1>Movie List - {this.state.movies.length}</h1>
+                <ul>
+                    {this.state.movies.map((movie) => {
+                        return (
+                            <li>
+                                {movie.name}
+                            </li>
+                        )
+                    })}
+                </ul>
+
+                <h2>Add Movie</h2> 
+                <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="movieId">id</label>
+                    <input 
+                        type="text"
+                        id="movieId"
+                        name="id" 
+                        value={this.state.id} 
+                        onChange={this.handleChange} 
+                        /> <br/>
+
+                    <label htmlFor="movieName">name</label>
+                    <input 
+                            type="text"
+                            id="movieName"
+                            name="name"
+                            value={this.state.name}
+                            onChange={this.handleChange} 
+                            /> <br/> 
+
+                    <label htmlFor ="movieWatched"> watched </label> 
+                    <input 
+                        type="checkbox" 
+                        id="movieWatched"
+                        name="watched"
+                        checked={this.state.watched} 
+                        onChange={this.handleChange}
+                      /> <br/> 
+
+                    <input type="submit" value="Add Movie" />
+                </form>
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<MovieList />, rootHandle)
+  </script>
+</body>
+
+</html>

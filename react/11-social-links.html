@@ -1,0 +1,56 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+        const socials = [
+            { id: 1, name: 'facebook', url: 'http://www.facebook.com'},
+            { id: 2, name: 'instagram', url: 'http://www.instagram.com' },
+            { id: 3, name: 'snapchat', url: 'http://www.snapchat.com' }
+        ]
+        const ele = (
+            <div>
+            
+       <h2>totle links - {socials.length}</h2>
+       <table border = "1">
+       <thead>
+       <tr>
+       <th> name</th>
+       <th> url</th>
+       <th>action</th>
+       
+       </tr>
+       </thead>
+       <tbody>
+       {
+           socials.map(function(link){
+               return(
+                   <tr key={link.id}>
+                   <td> {link.name}</td>
+                   <td> {link.url}</td>
+                   <td> <a href={link.url} target="_blank"> visit { link.name }</a> </td>
+                   
+                
+                   </tr>
+               )
+           })
+       }
+       </tbody>
+       </table>
+       </div>
+   )
+   ReactDOM.render(ele, document.getElementById('root'))
+        
+    </script>
+</body>
+
+</html>

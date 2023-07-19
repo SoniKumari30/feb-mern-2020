@@ -1,0 +1,65 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+    const employees = [
+        {id:'emp001', name:'abhi', gender:'male'},
+        {id:'emp002', name:'sahana', gender:'female'},
+        {id:'emp003', name:'srujan', gender:'male'}
+   
+]
+//filter all male employees
+ const maleEmployees = employees.filter(function(emp){
+        
+            return  emp.gender =='male'
+        
+    })
+    const femaleEmployees = employees.filter(function(emp){
+        
+        return  emp.gender =='female'
+    
+})
+    //create ele
+
+    const ele=(
+        <div>
+    <h1>listing male Employees-{maleEmployees.length}</h1>
+
+    <ol>{
+        maleEmployees.map(function(emp){
+         return <li key={emp.id}>{emp.name}({emp.id}) </li>  
+        })
+
+    }
+
+    </ol>
+    
+    <h1>listing female Employees-{femaleEmployees.length}</h1>
+
+    <ol>{
+        femaleEmployees.map(function(emp){
+         return <li  key={emp.id}>{emp.name}({emp.id}) </li>  
+        })
+
+    }
+   </ol>
+    
+      </div>
+)
+ReactDOM.render(ele,document.getElementById('root'))
+
+   
+  </script>
+</body>
+
+</html>

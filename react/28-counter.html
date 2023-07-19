@@ -1,0 +1,73 @@
+<html>
+<title>
+</title>
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        class Counter extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    count: 0
+                }
+            }
+
+            handleClick = () => {
+            // can we update the state directly - yes 
+            // should we update the state directly - no 
+            // this.state.count += 1
+            // console.log(this.state)
+            // why - if we change directly, state values changes, but the changed value is not displayed on the UI, because the component is not re rendered
+        
+            // how - setState
+            // why setState - change the state value, and also it will re render the component, by which we can see new data on screen
+
+                this.setState(function(prevState){
+                    return {
+                        count: prevState.count + 1
+                    }
+                })
+            }
+
+            handleDown = () => {
+                this.setState(function(prevState){
+                    return {
+                        count: prevState.count - 1
+                    }
+                })
+            }
+
+            handleReset = () => {
+                this.setState(function(prevState){
+                    return {
+                        count: 0
+                    }
+                })
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h1> { this.state.count }</h1> 
+                        <button onClick={this.handleClick}> up </button> 
+                        <button onClick={this.handleDown}> down </button>
+                         <button onClick={this.handleReset}> reset </button> 
+                    </div> 
+                )
+            }
+        }
+
+        ReactDOM.render(<Counter />, rootHandle)
+    </script>
+</body>
+
+</html> 
